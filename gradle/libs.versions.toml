@@ -1,32 +1,122 @@
+# ----------------------------------------------------------------------------------------------------------------------
 [versions]
+# Plugin
 agp = "8.10.0"
-kotlin = "2.0.21"
-coreKtx = "1.16.0"
+kotlin = "2.1.21"
+googleDaggerHilt = "2.56.2"
+androidxHilt = "1.2.0"
+
+# Main Dependency --------------------------------
+androidxActivity = "1.10.1"
+androidxCoreKtx = "1.16.0"
+androidxComposeBom = "2025.05.01"
+retrofit = "2.11.0"
+okhttp = "4.12.0"
+
+# Test Dependency --------------------------------
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-composeBom = "2024.09.00"
+androidxJunit = "1.2.1"
+androidxEspressoCore = "3.6.1"
 
+# ----------------------------------------------------------------------------------------------------------------------
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+# Main Dependency --------------------------------
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version = "1.2.0-beta02" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCoreKtx" }
+fwhyn-lib-baze = { module = "io.github.fwhyn.lib:baze", version = "1.6.0" }
 
+com-google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "googleDaggerHilt" }
+com-google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "googleDaggerHilt" }
+
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHilt" }
+
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+io-coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
+
+com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+com-squareup-retrofit2-converter-jackson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
+com-squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+com-squareup-okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+com-squareup-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+# Test Dependency --------------------------------
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspressoCore" }
+org-jetbrains-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version = "1.10.2" }
+org-robolectric = { group = "org.robolectric", name = "robolectric", version = "4.14.1" }
+
+org-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version = "5.4.0" }
+org-mockito-inline = { group = "org.mockito", name = "mockito-inline", version = "5.2.0" }
+io-mock = { group = "io.mockk", name = "mockk", version = "1.14.2" }
+
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+app-cash-turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
+
+# ----------------------------------------------------------------------------------------------------------------------
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "googleDaggerHilt" }
 
+# ----------------------------------------------------------------------------------------------------------------------
+[bundles]
+# Main Bundles --------------------------------
+dagger-hilt = [
+    "com-google-dagger-hilt-android",
+    "androidx-hilt-navigation-compose",
+]
+
+dagger-hilt-compiler = [
+    "com-google-dagger-hilt-compiler",
+]
+
+androidx-compose = [
+    "androidx-compose-ui",
+    "androidx-compose-ui-graphics",
+    "androidx-compose-ui-tooling",
+    "androidx-compose-ui-tooling-preview",
+    "androidx-compose-material3",
+    "androidx-compose-material3-window-size",
+    "androidx-compose-foundation",
+    "androidx-compose-foundation-layout",
+    "androidx-compose-runtime",
+    "androidx-activity-compose",
+    "io-coil-kt-compose",
+]
+
+retrofit2 = [
+    "com-squareup-retrofit2-retrofit",
+    "com-squareup-retrofit2-converter-jackson",
+    "com-squareup-retrofit2-converter-gson",
+]
+
+okhttp = [
+    "com-squareup-okhttp3-okhttp",
+    "com-squareup-okhttp3-logging-interceptor"
+]
+
+# Test Bundles --------------------------------
+org-mockito-test = [
+    "org-mockito-kotlin",
+    "org-mockito-inline",
+    "io-mock",
+]
+
+androidx-compose-test = [
+    "androidx-compose-ui-test-manifest",
+    "androidx-compose-ui-test-junit4",
+]
