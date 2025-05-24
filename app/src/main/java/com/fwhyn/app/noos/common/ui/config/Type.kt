@@ -1,4 +1,4 @@
-package com.fwhyn.app.noos.ui.theme
+package com.fwhyn.app.noos.common.ui.config
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

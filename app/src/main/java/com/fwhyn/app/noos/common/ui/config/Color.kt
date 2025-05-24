@@ -1,4 +1,4 @@
-package com.fwhyn.app.noos.ui.theme
+package com.fwhyn.app.noos.common.ui.config
 
 import androidx.compose.ui.graphics.Color
 
