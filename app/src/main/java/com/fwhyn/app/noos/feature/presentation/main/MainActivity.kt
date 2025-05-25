@@ -1,4 +1,4 @@
-package com.fwhyn.app.noos
+package com.fwhyn.app.noos.feature.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
