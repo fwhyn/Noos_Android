@@ -1,6 +1,7 @@
 package com.fwhyn.app.noos.feature.func.news.di
 
-import com.fwhyn.app.noos.common.network.helper.RetrofitProvider
+import com.fwhyn.app.noos.BuildConfig
+import com.fwhyn.app.noos.common.network.helper.RetrofitBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +18,13 @@ class RetrofitModule {
 
     @Provides
     @NewsBaseApi
-    fun provideRetrofit(): Retrofit = RetrofitProvider.get("https://newsapi.org/v2/")
+    fun provideRetrofit(): Retrofit {
+        val builder = RetrofitBuilder("https://newsapi.org/v2/").addBearerAuth { "" }
+
+        if (BuildConfig.DEBUG) {
+            builder.enableLog()
+        }
+
+        return builder.build()
+    }
 }

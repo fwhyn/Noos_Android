@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+// TODO refer from baze
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkMonitorModule {
