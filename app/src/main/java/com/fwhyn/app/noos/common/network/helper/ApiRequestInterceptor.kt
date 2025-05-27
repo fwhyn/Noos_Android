@@ -1,0 +1,32 @@
+package com.fwhyn.app.noos.common.network.helper
+
+import android.util.Log
+import com.fwhyn.lib.baze.common.data.helper.extension.getDebugTag
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
+
+// TODO move to baze
+class ApiRequestInterceptor(
+    private val ongGetKey: () -> String,
+) : Interceptor {
+
+    private val debugTag = ApiRequestInterceptor::class.java.getDebugTag()
+
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val originalRequest: Request = chain.request()
+        val token = ongGetKey()
+        val bearer = "Bearer $token"
+
+        Log.d(debugTag, bearer)
+
+        val interceptedRequest: Request = originalRequest
+            .newBuilder()
+            .addHeader("Authorization", bearer)
+            .build()
+
+        val response = chain.proceed(interceptedRequest)
+
+        return response
+    }
+}

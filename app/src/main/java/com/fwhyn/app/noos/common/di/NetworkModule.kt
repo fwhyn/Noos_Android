@@ -12,6 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
+// TODO refer from baze
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
