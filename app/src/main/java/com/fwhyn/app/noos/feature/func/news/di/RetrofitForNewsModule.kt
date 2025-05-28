@@ -37,9 +37,13 @@ class RetrofitForNewsModule {
     @NewsBaseApi
     fun provideRetrofit(
         @NewsBaseApi baseUrl: HttpUrl,
-        @NewsBaseApi onGetKey: () -> String,
+        @NewsBaseApi onGetKey: (() -> String)?,
     ): Retrofit {
-        val builder = RetrofitBuilder(baseUrl).addBearerAuth(onGetKey = onGetKey)
+        val builder = RetrofitBuilder(baseUrl)
+
+        onGetKey?.let {
+            builder.addBearerAuth(onGetKey = it)
+        }
 
         if (BuildConfig.DEBUG) {
             builder.enableLog()
