@@ -8,6 +8,7 @@ import okhttp3.mockwebserver.RecordedRequest
 class NewsMockWebServerProvider {
 
     companion object {
+        // TODO move to dependency injection, based on fake or real build
         const val DUMMY_API_KEY = "asdf8aw30nk"
 
         const val OK = "ok"
