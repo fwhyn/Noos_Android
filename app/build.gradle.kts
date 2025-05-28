@@ -14,8 +14,8 @@ android {
         applicationId = "com.fwhyn.app.noos"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1000000
-        versionName = "1.0.0"
+        versionCode = 2000000
+        versionName = "2.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
