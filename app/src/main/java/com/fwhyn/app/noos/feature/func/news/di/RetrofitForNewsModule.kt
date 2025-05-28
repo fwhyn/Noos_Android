@@ -6,20 +6,40 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
+import okhttp3.HttpUrl
 import retrofit2.Retrofit
 import javax.inject.Qualifier
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-class RetrofitModule {
+class RetrofitForNewsModule {
 
     @Qualifier
     annotation class NewsBaseApi
 
     @Provides
     @NewsBaseApi
-    fun provideRetrofit(): Retrofit {
-        val builder = RetrofitBuilder("https://newsapi.org/v2/").addBearerAuth { "" }
+    fun provideBaseUrl(): HttpUrl {
+        return HttpUrl.Builder()
+            .scheme("https")
+            .host("newsapi.org")
+            .addPathSegment("v2")
+            .build()
+    }
+
+    @Provides
+    @NewsBaseApi
+    fun provideApiKey(): () -> String {
+        return { "" }
+    }
+
+    @Provides
+    @NewsBaseApi
+    fun provideRetrofit(
+        @NewsBaseApi baseUrl: HttpUrl,
+        @NewsBaseApi onGetKey: () -> String,
+    ): Retrofit {
+        val builder = RetrofitBuilder(baseUrl).addBearerAuth(onGetKey = onGetKey)
 
         if (BuildConfig.DEBUG) {
             builder.enableLog()

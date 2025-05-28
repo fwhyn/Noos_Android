@@ -44,7 +44,6 @@ androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime
 io-coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
 
 com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-com-squareup-retrofit2-converter-jackson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
 com-squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 com-squareup-okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
@@ -101,7 +100,6 @@ androidx-compose = [
 
 retrofit2 = [
     "com-squareup-retrofit2-retrofit",
-    "com-squareup-retrofit2-converter-jackson",
     "com-squareup-retrofit2-converter-gson",
 ]
 

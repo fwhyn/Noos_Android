@@ -3,8 +3,9 @@ package com.feature.func.news.remote
 import MainDispatcherRule
 import com.fwhyn.app.noos.feature.func.news.data.model.NewsResponse
 import com.fwhyn.app.noos.feature.func.news.data.remote.ArticlesRemoteDataSource
+import com.fwhyn.app.noos.feature.func.news.data.remote.NewsApi
 import com.fwhyn.app.noos.feature.func.news.di.NewsModule
-import com.fwhyn.app.noos.feature.func.news.di.RetrofitModule
+import com.fwhyn.app.noos.feature.func.news.di.RetrofitForNewsModule
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -19,12 +20,8 @@ class ArticlesRemoteDataSourceTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val retrofitModule = RetrofitModule()
-    private val retrofit = retrofitModule.provideRetrofit()
-    private val newsModule = NewsModule()
-    private val newsApi = newsModule.provideNewsApi(retrofit)
-
     private lateinit var mockWebServer: MockWebServer
+    private lateinit var newsApi: NewsApi
     private lateinit var articlesRemoteDataSource: ArticlesRemoteDataSource
 
     @Before
@@ -32,6 +29,11 @@ class ArticlesRemoteDataSourceTest {
         mockWebServer = MockWebServer()
         mockWebServer.start()
 
+        val retrofitForNewsModule = RetrofitForNewsModule()
+        val retrofit = retrofitForNewsModule.provideRetrofit(mockWebServer.url("/"), { "" })
+        val newsModule = NewsModule()
+
+        newsApi = newsModule.provideNewsApi(retrofit)
         articlesRemoteDataSource = newsModule.provideArticlesRemoteDataSource(newsApi)
     }
 
@@ -53,7 +55,7 @@ class ArticlesRemoteDataSourceTest {
                             "name": "Gizmodo.com"
                         },
                         "author": "Lucas Ropek",
-                        "title": "19-Year-Old to Plead Guilty to Hacking Charges After Data Breach of Millions of Schoolchildren",
+                        "title": "19-Year-Old to Plead Guilty to Hacking Charges",
                         "description": "A company with the personal information of tens of millions of children was breached last year.",
                         "url": "https://gizmodo.com/19-year-old-to-plead-guilty-to-hacking-charges-after-data-breach-of-millions-of-schoolchildren-2000605540",
                         "urlToImage": "https://gizmodo.com/app/uploads/2022/03/17144a5c640c20e7a04ffa123ce0fd2a.jpg",
@@ -122,11 +124,11 @@ class ArticlesRemoteDataSourceTest {
                 .setBody(mockResponse)
         )
 
-        val response: NewsResponse = newsApi.searchEverything("")
+        val response: NewsResponse = newsApi.searchEverything("bitcoin")
 
         Assert.assertEquals("ok", response.status)
         Assert.assertEquals(5, response.total)
-        Assert.assertEquals(1, response.articles.size)
+        Assert.assertEquals(5, response.articles.size)
         Assert.assertEquals("Gizmodo.com", response.articles[0].source.name)
         Assert.assertEquals("Lucas Ropek", response.articles[0].author)
         Assert.assertEquals("19-Year-Old to Plead Guilty to Hacking Charges", response.articles[0].title)

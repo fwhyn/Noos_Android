@@ -1,12 +1,13 @@
 package com.fwhyn.app.noos.common.network.helper
 
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO move to baze
-class RetrofitBuilder(private val baseUrl: String) {
+class RetrofitBuilder(private val baseUrl: HttpUrl) {
     private val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
     fun addBearerAuth(onGetKey: (() -> String)): RetrofitBuilder {
