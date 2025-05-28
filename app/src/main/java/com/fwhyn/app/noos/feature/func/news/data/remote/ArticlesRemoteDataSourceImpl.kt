@@ -8,7 +8,7 @@ class ArticlesRemoteDataSourceImpl(
 ) : ArticlesRemoteDataSource {
     override suspend fun get(param: GetArticlesRepoParam): List<Article> {
         val response = newsApi.searchEverything(
-
+            ""
         )
 
         return response.articles
