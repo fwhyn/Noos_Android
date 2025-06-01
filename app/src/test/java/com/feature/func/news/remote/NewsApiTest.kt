@@ -88,11 +88,11 @@ class NewsApiTest {
         Assert.assertEquals("19-Year-Old to Plead Guilty to Hacking Charges", response.articles[0].title)
     }
 
-    fun initialize() {
+    private fun initialize() {
         initialize { NewsMockWebServerProvider.DUMMY_API_KEY }
     }
 
-    fun initialize(onGetKey: (() -> String)?) {
+    private fun initialize(onGetKey: (() -> String)?) {
         val retrofit = retrofitForNewsModule.provideRetrofit(mockWebServer.url("/"), onGetKey)
         newsApi = newsModule.provideNewsApi(retrofit)
     }
