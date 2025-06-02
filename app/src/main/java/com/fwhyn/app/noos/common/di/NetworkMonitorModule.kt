@@ -2,15 +2,14 @@ package com.fwhyn.app.noos.common.di
 
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
-import com.fwhyn.app.noos.common.network.helper.NetworkMonitorImpl
 import com.fwhyn.lib.baze.network.data.helper.NetworkMonitor
+import com.fwhyn.lib.baze.network.data.helper.NetworkMonitorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-// TODO refer from baze
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkMonitorModule {
@@ -20,8 +19,10 @@ class NetworkMonitorModule {
     fun provideNetworkMonitor(
         connectivityManager: ConnectivityManager,
         @NetworkModule.Internet networkRequest: NetworkRequest,
-    ): NetworkMonitor = NetworkMonitorImpl(
-        connectivityManager,
-        networkRequest
-    )
+    ): NetworkMonitor {
+        return NetworkMonitorImpl(
+            connectivityManager,
+            networkRequest
+        )
+    }
 }

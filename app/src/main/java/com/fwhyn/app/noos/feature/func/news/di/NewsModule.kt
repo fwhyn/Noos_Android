@@ -1,9 +1,9 @@
 package com.fwhyn.app.noos.feature.func.news.di
 
-import com.fwhyn.app.noos.common.network.helper.RetrofitApiService
 import com.fwhyn.app.noos.feature.func.news.data.remote.ArticlesRemoteDataSource
 import com.fwhyn.app.noos.feature.func.news.data.remote.ArticlesRemoteDataSourceImpl
 import com.fwhyn.app.noos.feature.func.news.data.remote.NewsApi
+import com.fwhyn.lib.baze.retrofit.api.RetrofitApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

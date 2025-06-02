@@ -2,8 +2,8 @@ package com.fwhyn.app.noos.common.di
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import com.fwhyn.lib.baze.network.data.helper.Util
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +12,6 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-// TODO refer from baze
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
@@ -25,14 +24,13 @@ class NetworkModule {
     fun provideConnectivityManager(
         @ApplicationContext context: Context,
     ): ConnectivityManager {
-        return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return Util.getConnectivityManager(context)
     }
 
     @Provides
     @Singleton
     @Internet
-    fun provideNetworkRequestInternet(): NetworkRequest = NetworkRequest
-        .Builder()
-        .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        .build()
+    fun provideNetworkRequestInternet(): NetworkRequest {
+        return Util.getNetworkRequestInternet()
+    }
 }

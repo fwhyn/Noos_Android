@@ -1,7 +1,7 @@
 package com.fwhyn.app.noos.feature.func.news.di
 
 import com.fwhyn.app.noos.BuildConfig
-import com.fwhyn.app.noos.common.network.helper.RetrofitBuilder
+import com.fwhyn.lib.baze.retrofit.api.RetrofitBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
